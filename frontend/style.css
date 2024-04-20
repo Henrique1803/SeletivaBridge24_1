@@ -1,0 +1,47 @@
+h1 {
+	font-weight: 1000;
+    font-size: 50px;
+	letter-spacing: -0.03em;
+	margin-bottom: 50px;
+	color: rgb(22, 21, 21);
+    text-align: center;
+}
+
+.btn-calcular {
+    font-size: 18px; /* Define o tamanho da fonte do texto dentro do botão */
+    width: 300px;
+    /* Outras propriedades de estilo, como cores de fundo, cor do texto, borda, etc., podem ser adicionadas conforme necessário */
+}
+
+/* Rodapé
+---------------------------- */
+footer {
+	background: #000;
+	padding: 50px 0px 20px 0px;
+	position: relative;
+}
+
+footer h4 {
+	color: #919496;
+	font-size: 0.8em;
+	text-transform: uppercase;
+}
+
+footer .navbar-nav a {
+	color: white;
+	font-size: 0.8em;
+}
+
+footer .navbar-nav a:hover {
+	color: #9bf0e1;
+	text-decoration: none;
+}
+
+footer ul {
+	list-style: none;
+}
+
+footer li {
+	float: right;
+	margin: 0 5px;
+}
