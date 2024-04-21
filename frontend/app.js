@@ -1,6 +1,25 @@
 const formulario = document.querySelector("form");
 const Inumero = document.querySelector(".numero");
 
+function cadastrar () {
+    fetch("http://localhost:8080/Calculadora_primos",
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({
+                numero: Inumero.value,
+                quantidadePrimos: 0,
+                tempoUtilizado: 0
+            })
+        }
+    )
+    .then(function (res) { console.log(res) })
+    .catch(function (res) { console.log(res) })
+};
+
 function limpar () {
     Inumero.value = "";
 }
@@ -18,6 +37,7 @@ function validar () {
 formulario.addEventListener('submit', function (event) {
     event.preventDefault();
     if(validar()) {
+        cadastrar();
         limpar();
     } else {
         //dialog de erro
