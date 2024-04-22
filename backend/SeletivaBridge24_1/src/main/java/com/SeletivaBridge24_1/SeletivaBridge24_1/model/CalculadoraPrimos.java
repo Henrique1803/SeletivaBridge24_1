@@ -12,7 +12,6 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.PositiveOrZero;
 
-
 @Entity
 @Table(name = "Calculadora_primos")
 public class CalculadoraPrimos {

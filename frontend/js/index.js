@@ -1,4 +1,5 @@
 const url = 'http://localhost:8080/Calculadora_primos';
+let valorLimite = 1000000;
 
 const formulario = document.querySelector('form');
 const Inumero = document.querySelector('.numero');
@@ -7,45 +8,16 @@ function mostrar(data) {
     const elementoQuantidadePrimos = document.getElementById('quantidadePrimos');
     const elementoTempoUtilizado = document.getElementById('tempoUtilizado');
 
-    // Verifica se a propriedade quantidadePrimos está presente no objeto data
-    if (data.hasOwnProperty('quantidadePrimos')) {
-        // Exibe a quantidade de números primos na tela
-        const quantidadePrimos = data.quantidadePrimos;
-        elementoQuantidadePrimos.innerHTML = 'Quantidade de números primos: <span class="ressaltar">' + quantidadePrimos + '</span>';
-    } else {
-        // Se a propriedade quantidadePrimos não estiver presente, exibe uma mensagem de erro
-        elementoQuantidadePrimos.innerText = 'Erro: propriedade quantidadePrimos não encontrada no JSON.';
-    }
+    const quantidadePrimos = data.quantidadePrimos;
+    elementoQuantidadePrimos.innerHTML = 'Quantidade de números primos: <span class="ressaltar">' + quantidadePrimos + '</span>';
+    const tempoUtilizado = data.tempoUtilizado;
+    elementoTempoUtilizado.innerHTML = 'Tempo que o servidor levou para fazer o cálculo: <span class="ressaltar">' + tempoUtilizado + ' ns</span>';
 
-    // Verifica se a propriedade tempoUtilizado está presente no objeto data
-    if (data.hasOwnProperty('tempoUtilizado')) {
-        // Exibe o tempo utilizado para o cálculo na tela
-        const tempoUtilizado = data.tempoUtilizado;
-        elementoTempoUtilizado.innerHTML = 'Tempo gasto para o cálculo: <span class="ressaltar">' + tempoUtilizado + ' ns</span>';
-    } else {
-        // Se a propriedade quantidadePrimos não estiver presente, exibe uma mensagem de erro
-        elementoTempoUtilizado.innerText = 'Erro: propriedade tempoUtilizado não encontrada no JSON.';
-    }
 }
 
-/*async function getAPI (url) {
-    mostrarLoader();
-
-    const response = await fetch(url, {method: 'GET'});
-
-    var data = await response.json();
-    console.log(data);
-
-    if (response) esconderLoader();
-    //mostrar(data);
-}*/
-
-
-async function cadastrar () {
-    mostrarLoader();
-
+async function cadastrar (numero) {
     try {
-        const response = await fetch(url,
+        let response = await fetch(url,
             {
                 headers: {
                     'Accept': 'application/json',
@@ -53,7 +25,7 @@ async function cadastrar () {
                 },
                 method: 'POST',
                 body: JSON.stringify({
-                    numero: Inumero.value,
+                    numero: numero,
                     quantidadePrimos: 0,
                     tempoUtilizado: 0
                 })
@@ -63,17 +35,27 @@ async function cadastrar () {
         if (!response.ok) {
             var mensagemErro = document.getElementById('mensagemErro');
             exibirErro(mensagemErro, Inumero, '*** Erro ao enviar a solicitação!');
-            throw new Error('Erro ao enviar a solicitação.');
         }
+    
+        let data = await response.json();
 
-        const data = await response.json();
-        console.log(data);
+        return data;
+    } catch (error) {
+        console.error(error);
+    } finally {
 
+    }
+}
+
+async function calcular (numero) {
+    mostrarLoader();
+
+    try {
+        const data = await cadastrar(numero);
         esconderLoader();
         mostrar(data);
     } catch (error) {
         console.error(error);
-        esconderLoader();
     }
 };
 
@@ -81,10 +63,13 @@ function validar () {
     var numero = Inumero.value.trim();
     var mensagemErro = document.getElementById('mensagemErro');
 
-    if (numero === "" || !Number.isInteger(Number(numero))) {
+    if (numero === "" || !Number.isInteger(Number(numero)) || parseInt(numero) < 0) {
         exibirErro(mensagemErro, Inumero, '*** Erro: Preencha este campo um número inteiro não negativo!');
         return false;
-    } else {
+    } else if(parseInt(numero) > valorLimite){
+        exibirErro(mensagemErro, Inumero, '*** Erro: Os servidores conseguem processar somente um número menor ou igual a '+ valorLimite +'!');
+        return false;
+    }else{
         ocultarErro(mensagemErro, Inumero);
         return true;
     }
@@ -116,10 +101,31 @@ function limpar() {
     document.getElementById('tempoUtilizado').innerHTML = '';
 }
 
+// Busca na API o valor máximo N que ela consegue calcular a quantidade de primos positivos menores
+async function buscarValorLimite () {
+    try {
+        const response = await fetch(url+'/limite', {method: 'GET'});
+
+        if (!response.ok) {
+            valorLimite = 1000000;
+        } else {
+            let retorno = await response.json();
+            valorLimite = parseInt(retorno);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 formulario.addEventListener('submit', function (event) {
     limpar();
     event.preventDefault();
     if(validar()) {
-        cadastrar();
+        calcular(Inumero.value);
     }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Função chamada uma vez quando o HTML for carregado
+    buscarValorLimite();
 });

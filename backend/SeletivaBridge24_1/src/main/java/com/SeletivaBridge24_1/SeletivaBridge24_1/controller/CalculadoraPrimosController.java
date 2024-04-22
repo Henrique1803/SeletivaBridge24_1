@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.SeletivaBridge24_1.SeletivaBridge24_1.model.CalculadoraPrimos;
 import com.SeletivaBridge24_1.SeletivaBridge24_1.service.CalculadoraPrimosService;
+import com.SeletivaBridge24_1.SeletivaBridge24_1.util.Constantes;
 
 import jakarta.validation.Valid;
 
@@ -29,7 +31,7 @@ import jakarta.validation.Valid;
 @CrossOrigin("*")
 @RequestMapping("/Calculadora_primos")
 public class CalculadoraPrimosController {
-	
+	@Autowired
 	private CalculadoraPrimosService calculadoraPrimosService;
 	
 	public CalculadoraPrimosController(CalculadoraPrimosService calculadoraPrimosService) {
@@ -74,6 +76,11 @@ public class CalculadoraPrimosController {
 		});
 		
 		return errors;
+	}
+	
+	@GetMapping("/limite")
+	public int numeroMaxSuportado () {
+		return Constantes.NUMERO_MAX_SUPORTADO;
 	}
 	
 }
