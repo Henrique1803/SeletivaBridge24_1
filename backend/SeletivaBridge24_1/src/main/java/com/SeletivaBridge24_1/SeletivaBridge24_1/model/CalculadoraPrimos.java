@@ -1,7 +1,7 @@
 package com.SeletivaBridge24_1.SeletivaBridge24_1.model;
 
 import com.SeletivaBridge24_1.SeletivaBridge24_1.util.AlgoritmoContagemDePrimos;
-import com.SeletivaBridge24_1.SeletivaBridge24_1.util.AlgoritmoPrincipal;
+import com.SeletivaBridge24_1.SeletivaBridge24_1.util.Constantes;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.PositiveOrZero;
 
 
 @Entity
@@ -17,24 +19,26 @@ public class CalculadoraPrimos {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = true)
+	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "numero", nullable = true)
+	@PositiveOrZero(message = "O número não pode ser negativo!")
+    @Max(value = Constantes.NUMERO_MAX_SUPORTADO, message = "Nossos servidores conseguem suportar essa operação somente até o número " + Constantes.NUMERO_MAX_SUPORTADO)
+	@Column(name = "numero", nullable = false)
 	private int numero;
 	
-	@Column(name = "quantidade_primos", nullable = true)
+	@PositiveOrZero(message = "Quantidade de primos não pode ser negativo!")
+	@Column(name = "quantidade_primos", nullable = false)
 	private int quantidadePrimos;
 	
-	@Column(name = "tempo_utilizado", nullable = true)
+	@PositiveOrZero(message = "Tempo utilizado não pode ser negativo!")
+	@Column(name = "tempo_utilizado", nullable = false)
 	private long tempoUtilizado;
 
 	public void calcularPrimosMenoresQueN() {
 		long startTime = System.nanoTime(); // Início do contador
 		
-		AlgoritmoContagemDePrimos algoritmo = new AlgoritmoPrincipal(); // Algoritmo implementado por mim é o padrão
-		
-		quantidadePrimos = algoritmo.calcularPrimosMenoresQueN(numero);
+		quantidadePrimos = Constantes.ALGORITMO_PADRAO.calcularPrimosMenoresQueN(numero); // Algoritmo padrão é utilizado quando a aplicação não define explícitamente qual usar
 
 		long endTime = System.nanoTime(); // Fim do contador
 		tempoUtilizado = endTime - startTime; // Tempo gasto para o cálculo

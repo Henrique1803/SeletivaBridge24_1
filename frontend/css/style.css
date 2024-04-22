@@ -7,10 +7,33 @@ h1 {
     text-align: center;
 }
 
+form {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+.resultado{
+	font-weight: 500;
+    font-size: 25;
+	letter-spacing: -0.03em;
+	margin-bottom: 50px;
+	color: rgb(22, 21, 21);
+    text-align: center;
+}
+
+.ressaltar{
+	font-weight: 800;
+    font-size: 26;
+}
+
 .btn-calcular {
-    font-size: 18px; /* Define o tamanho da fonte do texto dentro do botão */
-    width: 300px;
-    /* Outras propriedades de estilo, como cores de fundo, cor do texto, borda, etc., podem ser adicionadas conforme necessário */
+    font-size: 18px;
+    width: 420px;
+	height: 40px;
+}
+
+#loading {
+	display: none;
 }
 
 /* Rodapé
