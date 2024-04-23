@@ -47,3 +47,11 @@ O backend estará em execução em `http://localhost:8080`
 ### Executando o Frontend
 1. Abra o arquivo `index.html` localizado na pasta `frontend/index.html` em seu navegador web.
 O frontend será carregado e você poderá interagir com a aplicação.
+
+## Imagens das telas
+
+Tela principal:<br><br>
+![Print da tela de index.html](print_telas/index.png)  
+
+Tela de históricos:<br><br>
+![Print da tela de historico.html](print_telas/historico.png)
