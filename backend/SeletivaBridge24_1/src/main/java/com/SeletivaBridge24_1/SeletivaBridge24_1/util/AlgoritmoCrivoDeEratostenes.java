@@ -1,11 +1,11 @@
 package com.SeletivaBridge24_1.SeletivaBridge24_1.util;
 
-// ATENÇÂO! Esse algoritmo não foi criado por mim.
-// Vou utilizá-lo como uma das possíveis maneiras de calcular a quantidade de números primos com o padrão
-// de projeto Strategy.
-// Referência utilizada para esse algoritmo:
-// https://acervolima.com/peneira-de-eratostenes/
-
+/**
+ * ATENÇÂO! Esse algoritmo não foi criado por mim.
+ * Vou utilizá-lo como uma das possíveis maneiras de calcular a quantidade de números primos com o padrão de projeto Strategy.
+ * Referência utilizada para esse algoritmo:
+ * https://acervolima.com/peneira-de-eratostenes/
+ */
 public class AlgoritmoCrivoDeEratostenes implements AlgoritmoContagemDePrimos {
 	public int calcularPrimosMenoresQueN(int numero) {
 		int n = numero - 1;

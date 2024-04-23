@@ -3,12 +3,14 @@ package com.SeletivaBridge24_1.SeletivaBridge24_1.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import com.SeletivaBridge24_1.SeletivaBridge24_1.DAO.ICalculadoraPrimos;
 import com.SeletivaBridge24_1.SeletivaBridge24_1.model.CalculadoraPrimos;
 
-@Lazy
+/**
+ * Esta classe é um serviço responsável por manipular objetos de CalculadoraPrimos.
+ * Ela interage com a camada de persistência através do repositório ICalculadoraPrimos.
+ */
 @Service
 public class CalculadoraPrimosService {
 	
@@ -43,9 +45,8 @@ public class CalculadoraPrimosService {
 
 	public CalculadoraPrimos buscarCalculadoraPrimos(Integer id) {
 		Optional<CalculadoraPrimos> calculadoraPrimos = repository.findById(id);
-		return calculadoraPrimos.orElse(null);
-		/*return calculadoraPrimos.orElseThrow(() -> new RuntimeException(
-				"CalculadoraPrimos não encontrada! Id: " + id + ", Tipo: " + CalculadoraPrimos.class.getName()));*/
+		return calculadoraPrimos.orElseThrow(() -> new RuntimeException(
+				"CalculadoraPrimos não encontrada! Id: " + id + ", Tipo: " + CalculadoraPrimos.class.getName()));
 	}
 	
 }

@@ -1,6 +1,5 @@
 package com.SeletivaBridge24_1.SeletivaBridge24_1.model;
 
-import com.SeletivaBridge24_1.SeletivaBridge24_1.util.AlgoritmoContagemDePrimos;
 import com.SeletivaBridge24_1.SeletivaBridge24_1.util.Constantes;
 
 import jakarta.persistence.Column;
@@ -12,6 +11,14 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.PositiveOrZero;
 
+/**
+ * Esta classe representa a entidade CalculadoraPrimos. Ela inclui um número, 
+ * a quantidade de primos menores que esse número (intervalo aberto: não inclui o número limite) e
+ * o tempo utilizado para o cálculo, além de algumas validações.
+ * Ainda,  utiliza-se o padrão de projeto Strategy. Um objeto do tipo AlgoritmoContagemDePrimos
+ * é necessário para realizar a contagem, permitindo que o algoritmo seja trocado dinamicamente, aplicando herança.
+ * Assim é possível adicionar novas implementações de algoritmos sem modificar o código, testando a eficiência de cada um.
+ */
 @Entity
 @Table(name = "Calculadora_primos")
 public class CalculadoraPrimos {
@@ -37,23 +44,10 @@ public class CalculadoraPrimos {
 	public void calcularPrimosMenoresQueN() {
 		long startTime = System.nanoTime(); // Início do contador
 		
-		quantidadePrimos = Constantes.ALGORITMO_PADRAO.calcularPrimosMenoresQueN(numero); // Algoritmo padrão é utilizado quando a aplicação não define explícitamente qual usar
-
-		long endTime = System.nanoTime(); // Fim do contador
-		tempoUtilizado = endTime - startTime; // Tempo gasto para o cálculo
-	}
-	
-	/*
-	 * Aqui utiliza-se o padrão de projeto Strategy.
-	 * Um objeto do tipo AlgoritmoContagemDePrimos é necessário para realizar a contagem, permitindo que
-	 * o algoritmo seja trocado dinamicamente. Assim é possível adicionar novas implementações de 
-	 * algoritmos sem modificar o código, testando a eficiência de cada um.
-	 */
-	public void calcularPrimosMenoresQueN(AlgoritmoContagemDePrimos algoritmo) {
-		long startTime = System.nanoTime(); // Início do contador
-
-		quantidadePrimos = algoritmo.calcularPrimosMenoresQueN(numero);
-
+		// Algoritmo padrão é definido nas constantes e utilizado aqui.
+		// Para trocar dinamicamente o algoritmo, basta alterar o objeto para o algoritmo desejado na classe de constantes.
+		quantidadePrimos = Constantes.ALGORITMO_PADRAO.calcularPrimosMenoresQueN(numero);
+		
 		long endTime = System.nanoTime(); // Fim do contador
 		tempoUtilizado = endTime - startTime; // Tempo gasto para o cálculo
 	}

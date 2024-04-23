@@ -27,6 +27,12 @@ import com.SeletivaBridge24_1.SeletivaBridge24_1.util.Constantes;
 
 import jakarta.validation.Valid;
 
+/**
+ * Esta classe é um controlador REST responsável por lidar com operações relacionadas à calculadora de números primos.
+ * Ele fornece endpoints para listar, criar, editar e excluir instâncias de CalculadoraPrimos. 
+ * Além disso, há um método para buscar um objeto CalculadoraPrimos por ID e 
+ * um método para retornar o limite máximo suportado pela calculadora.
+ */
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/Calculadora_primos")

@@ -1,5 +1,9 @@
 package com.SeletivaBridge24_1.SeletivaBridge24_1.util;
 
+/**
+ * Classe que fornece o algoritmo criado por mim para fazer o cálculo da quantidade
+ * de números primos menores que N.
+ */
 public class AlgoritmoPrincipal implements AlgoritmoContagemDePrimos{
 	
 	public int calcularPrimosMenoresQueN(int numero) {
@@ -23,6 +27,6 @@ public class AlgoritmoPrincipal implements AlgoritmoContagemDePrimos{
 				return false;
 			}
 		}
-		return true; //Caso não seja divisível por algum número até sua raiz quadrada, então ele é primo
+		return true; // Caso não seja divisível por algum número até sua raiz quadrada, então ele é primo
 	}
 }
