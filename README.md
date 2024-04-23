@@ -18,7 +18,7 @@ e fornece uma interface comum para acessá-los. Assim é possível trocá-los se
 ## Requisitos
 - Java JDK instalado.
 - Maven instalado.
-- XAMPP instalado (ou outro servidor MySQL)
+- XAMPP instalado (ou outro servidor MySQL).
 
 ## Instruções
 ### Clone do repositório
