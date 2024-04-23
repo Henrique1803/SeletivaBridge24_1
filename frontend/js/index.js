@@ -1,9 +1,10 @@
 const url = 'http://localhost:8080/Calculadora_primos';
-let valorLimite = 1000000;
+let valorLimite = 1000000; // Número limite padrão 
 
 const formulario = document.querySelector('form');
 const Inumero = document.querySelector('.numero');
 
+// Exibe na tela o resultado da operação
 function mostrar(data) {
     const elementoQuantidadePrimos = document.getElementById('quantidadePrimos');
     const elementoTempoUtilizado = document.getElementById('tempoUtilizado');
@@ -15,6 +16,7 @@ function mostrar(data) {
 
 }
 
+// Faz a requisição para calcular a quantidade primos menores que N e cadastrar o número no banco de dados
 async function cadastrar (numero) {
     try {
         let response = await fetch(url,
@@ -33,7 +35,7 @@ async function cadastrar (numero) {
         );
 
         if (!response.ok) {
-            var mensagemErro = document.getElementById('mensagemErro');
+            let mensagemErro = document.getElementById('mensagemErro');
             exibirErro(mensagemErro, Inumero, '*** Erro ao enviar a solicitação!');
         }
     
@@ -47,6 +49,7 @@ async function cadastrar (numero) {
     }
 }
 
+// Método responsável por chamar a função de cadastro e, enquanto a operação não está pronta, mostrar uma animação de carregamento
 async function calcular (numero) {
     mostrarLoader();
 
@@ -59,9 +62,10 @@ async function calcular (numero) {
     }
 };
 
+// Validação do campo do formuçário
 function validar () {
-    var numero = Inumero.value.trim();
-    var mensagemErro = document.getElementById('mensagemErro');
+    let numero = Inumero.value.trim();
+    let mensagemErro = document.getElementById('mensagemErro');
 
     if (numero === "" || !Number.isInteger(Number(numero)) || parseInt(numero) < 0) {
         exibirErro(mensagemErro, Inumero, '*** Erro: Preencha este campo um número inteiro não negativo!');
@@ -98,7 +102,6 @@ function mostrarLoader() {
 function limpar() {
     document.getElementById('quantidadePrimos').innerHTML = '';
     document.getElementById('tempoUtilizado').innerHTML = '';
-    document.getElementById('tempoUtilizado').innerHTML = '';
 }
 
 // Busca na API o valor máximo N que ela consegue calcular a quantidade de primos positivos menores
@@ -114,6 +117,8 @@ async function buscarValorLimite () {
         }
     } catch (error) {
         console.error(error);
+        let mensagemErro = document.getElementById('mensagemErro');
+        exibirErro(mensagemErro, Inumero, '*** Erro ao se conectar ao servidor!');
     }
 }
 
@@ -126,6 +131,6 @@ formulario.addEventListener('submit', function (event) {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Função chamada uma vez quando o HTML for carregado
+    // Função chamada uma vez quando o HTML for carregado, para ser possível fazer a validação com o número limite
     buscarValorLimite();
 });

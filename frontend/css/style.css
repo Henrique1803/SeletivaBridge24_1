@@ -40,10 +40,6 @@ hr {
 	font-size: 18px;;
 }
 
-.item-rodape {
-	padding: 10px;;
-}
-
 .btn-historico {
 	background-color: transparent;
 	border: none;
@@ -73,12 +69,7 @@ hr {
 	display: none;
 }
 
-#rodape-historico {
-	display: none;
-}
-
-/* Rodapé
----------------------------- */
+/* --------------------------- Rodapé ---------------------------- */
 footer {
 	background: #000;
 	padding: 50px 0px 20px 0px;
@@ -108,4 +99,12 @@ footer ul {
 footer li {
 	float: right;
 	margin: 0 5px;
+}
+
+#rodape-historico {
+	display: none;
+}
+
+.item-rodape {
+	padding: 10px;;
 }
