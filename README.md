@@ -65,7 +65,7 @@ As classes testadas foram:
 4. testaParametroMedio: Verificar se retorna 1229 ao receber o número 10000 (valor médio) como parâmetro.
 5. testaParametroGrande: Verificar se retorna 664579 ao receber o número 10000000 (valor grande) como parâmetro.
 ### Como executar
-1. É necessário seguir as instruções do tópico "Configuração do banco de dados", caso elas não tenham sido executadas ainda.
+1. É necessário seguir as instruções do tópico "Configuração do banco de dados", caso elas não tenham sido executadas ainda, para inicializar os serviços.
 2. Abra o terminal e navegue até diretório responsável pelo Backend:
 ```bash
 cd backend/SeletivaBridge24_1
