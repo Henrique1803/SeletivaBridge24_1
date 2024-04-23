@@ -11,7 +11,7 @@ function mostrar(calculos) {
                     <td>${contador}</td>
                     <td>${calculo.numero}</td>
                     <td>${calculo.quantidadePrimos}</td>
-                    <td>${calculo.tempoUtilizado}</td>
+                    <td>${calculo.tempoUtilizado} ns</td>
                     <td>
                         <button class="btn-historico" value="${calculo.id}" onclick="excluir(${calculo.id})"><img src="imagens/excluir.png" width="30" height="30"></button>
                     </td>
