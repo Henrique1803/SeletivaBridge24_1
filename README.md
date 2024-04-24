@@ -6,7 +6,7 @@ Criar uma Aplicação Web, que permita que o usuário insira um número
 inteiro k e calcule o número de inteiros positivos primos n MENORES que k.
 
 ## Principais tecnologias, ferramentas e técnicas utilizadas:
-- Java com Springboot: Funcionalidades do backend e cálculo dos números primos.
+- Java com Spring Boot: Funcionalidades do backend e cálculo dos números primos.
 - Banco de dados MySQL: Persistência dos dados para o histórico.
 - Arquitetura MVC: Estrutura de organização.
 - HTML, CSS, Bootstrap e JavaScript puro: Estilização, exibição e validações de entrada do frontend.
