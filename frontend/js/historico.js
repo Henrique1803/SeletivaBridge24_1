@@ -2,8 +2,18 @@ const url = 'http://localhost:8080/Calculadora_primos';
 
 // Método responsável por exibir o histórico de números digitados na tabela
 function mostrar(calculos) {
+    // Pegar o filtro selecionado
+    var selecao = document.getElementById("selecaoOrdenacao");
+    var atributo = selecao.value;
+    // Função de comparação dinâmica com base no atributo selecionado
+    function comparar(a, b) {
+        return a[atributo] - b[atributo];
+    }
+    // Atualiza a lista HTML com a nova ordem
+    calculos.sort(comparar);
+    
     let tab = ``;
-    let contador = 1; // Comece do último índice 
+    let contador = 1; // Começa do último índice 
     for (let i = calculos.length - 1; i >= 0; i--) { // Percorre de trás para frente (primeiro elemento da tabela é o último número digitado)
         let calculo = calculos[i];
         tab += `
@@ -98,7 +108,12 @@ function ocultarMensagem(mensagem) {
     mensagem.style.display = 'none';
 }
 
-  document.addEventListener("DOMContentLoaded", function() {
-    // Função chamada uma vez quando o HTML for carregado
+// Função chamada uma vez quando o HTML for carregado
+document.addEventListener("DOMContentLoaded", function() {
+    buscarHistorico(url);
+});
+
+// Adiciona um evento de alteração à caixa de seleção para reordenar a tabela
+document.getElementById("selecaoOrdenacao").addEventListener("change", function() {
     buscarHistorico(url);
 });

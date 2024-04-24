@@ -69,6 +69,10 @@ hr {
 	display: none;
 }
 
+#selecaoOrdenacao {
+	height: 50px;
+}
+
 /* --------------------------- Rodapé ---------------------------- */
 footer {
 	background: #000;
