@@ -6,14 +6,14 @@ Criar uma Aplicação Web, que permita que o usuário insira um número
 inteiro k e calcule o número de inteiros positivos primos n MENORES que k.
 
 ## Principais tecnologias, ferramentas e técnicas utilizadas:
-- Java com Spring Boot: Funcionalidades do backend e cálculo dos números primos.
-- Banco de dados MySQL: Persistência dos dados para o histórico.
-- Arquitetura MVC: Estrutura de organização.
-- HTML, CSS, Bootstrap e JavaScript puro: Estilização, exibição e validações de entrada do frontend.
-- API REST: Padrão utilizado pelo servidor.
-- Padrão de projeto Strategy: Encapsula cada algoritmo que faz a contagem dos números primos menores que N em sua própria classe
+- `Java com Spring Boot`: Funcionalidades do backend e cálculo dos números primos.
+- `Banco de dados MySQL`: Persistência dos dados para o histórico.
+- `Arquitetura MVC`: Estrutura de organização.
+- `HTML, CSS, Bootstrap e JavaScript puro`: Estilização, exibição e validações de entrada do frontend.
+- `API REST`: Padrão utilizado pelo servidor.
+- `Padrão de projeto Strategy`: Encapsula cada algoritmo que faz a contagem dos números primos menores que N em sua própria classe
 e fornece uma interface comum para acessá-los. Assim é possível trocá-los sem precisar modificar o código que os utiliza.
-- JUnit: Testes unitários para os três algoritmos de contagem de primos.
+- `JUnit`: Testes unitários para os três algoritmos de contagem de primos.
 
 ## Requisitos
 - Java JDK instalado.
@@ -84,3 +84,8 @@ Tela principal:<br><br>
 
 Tela de histórico:<br><br>
 ![Print da tela de historico.html](print_telas/historico.png)
+
+## Referências
+Referências utilizadas para o cálculo da quantidade de números primos com o algoritmo Crivo de Atkin e com o algoritmo Crivo de Eratóstenes:
+- [https://acervolima.com/peneira-de-atkin/](https://acervolima.com/peneira-de-atkin/)
+- [https://acervolima.com/peneira-de-eratostenes/](https://acervolima.com/peneira-de-eratostenes/)
